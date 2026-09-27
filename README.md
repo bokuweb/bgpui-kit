@@ -23,7 +23,7 @@ cargo run --example check_themes -- path/to/dark.json path/to/light.json
 
 ## Sharing across apps
 
-Use one `bgpui-kit` Git revision in each app's `Cargo.toml`. GPUI types from different Git sources or revisions cannot be mixed: the host's `gpui`, `gpui-component` and this crate must resolve to one GPUI instance. This prototype uses the `gpui-component` revision already selected by Ginka, and the same Zed Git source for `gpui`. Its lockfile selects Ginka's GPUI commit for standalone builds. A consuming app's lockfile must select the same commit. An app upgrading the toolkit should update these dependencies together.
+Use one `bgpui-kit` Git revision in each app's `Cargo.toml`. GPUI types from different Git sources or revisions cannot be mixed: the host's `gpui`, `gpui-component` and this crate must resolve to one GPUI instance. The kit names `gpui-component` by URL, as e1 does, so e1 can share the same Cargo source. Ginka's existing workspace patch redirects that source to its pinned revision. The kit's lockfile selects the toolkit and GPUI commits used by both apps for standalone builds; a consuming app's lockfile must select compatible commits. Upgrade the toolkit and kit together.
 
 Keep product-specific views in each app. Move a component here when its input and behavior can be stated without referring to an app's daemon, data model or navigation. Pedro has not yet been checked against this token contract.
 
